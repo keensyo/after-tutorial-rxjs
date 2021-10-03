@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { DataService } from './data.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'my-app',
+  templateUrl: `
+  <button (click)="updateValue()">Update Value</button>
+  `,
 })
 export class AppComponent {
-  title = 'after-tutorial-rxjs';
+  
+  constructor(private dataService: DataService) { }
+
+  updateValue() {
+    const value = new Date().toISOString();
+    this.dataService.setValue(value);
+  }
 }
